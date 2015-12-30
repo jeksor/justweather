@@ -17,4 +17,9 @@
 
 	<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+	<style name="AppTheme.Button">
+		<item name="android:layout_marginTop">@dimen/minor_screen_margin</item>
+		<item name="android:layout_marginLeft">@dimen/minor_screen_margin</item>
+		<item name="android:layout_marginRight">@dimen/minor_screen_margin</item>
+	</style>
 </resources>
