@@ -1,4 +1,4 @@
-package com.esorokin.justweather.views.base;
+package com.esorokin.justweather.ui.base;
 
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
@@ -8,7 +8,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
  *
  * @author esorokin
  */
-public interface BaseMvpLceView<M> extends MvpLceView<M>
+public interface BaseMvpView<D> extends MvpLceView<D>
 {
 	//add common logic
 }

@@ -1,7 +1,19 @@
 package com.esorokin.justweather.presenters;
 
+import android.util.Log;
+
+import com.esorokin.justweather.models.Forecast;
+import com.esorokin.justweather.network.ObservableCreator;
 import com.esorokin.justweather.presenters.base.BasePresenter;
-import com.esorokin.justweather.views.MainMvpView;
+import com.esorokin.justweather.ui.MainMvpView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import rx.Observable;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Date: 30-Dec-15
@@ -14,7 +26,7 @@ public class MainPresenter extends BasePresenter<MainMvpView>
 {
 	private static MainPresenter sInstance;
 
-	private MainPresenter()
+	public MainPresenter()
 	{/*singleton*/}
 
 	public static MainPresenter getInstance()
@@ -33,5 +45,42 @@ public class MainPresenter extends BasePresenter<MainMvpView>
 		return sInstance;
 	}
 
+	public void loadForecasts(final boolean pullOnRefresh)
+	{
+		Log.d("MainActivity", "loadForecasts");
+		getView().showLoading(pullOnRefresh);
 
+		/*@formatter:off*/
+		Observable.create(ObservableCreator.getNskForecasts())
+				.subscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(new Observer<List<Forecast>>()
+                {
+                    @Override
+                    public void onCompleted()
+                    {
+                        //ok, completed
+                    }
+
+                    @Override
+                    public void onError(Throwable e)
+                    {
+	                    if (isViewAttached())
+	                    {
+		                    getView().showError(e, pullOnRefresh);
+	                    }
+                    }
+
+                    @Override
+                    public void onNext(List<Forecast> forecasts)
+                    {
+	                    if (isViewAttached())
+	                    {
+		                    getView().setData(new ArrayList<>(forecasts));
+		                    getView().showContent();
+	                    }
+                    }
+                }
+		/*@formatter:on*/);
+	}
 }

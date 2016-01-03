@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    maven {url "https://clojars.org/repo/"}
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -10,6 +14,8 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -32,7 +38,16 @@ dependencies {
 
     /* Network */
     compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.okhttp:okhttp:2.7.0'
     compile 'com.google.code.gson:gson:2.4'
+    compile ('com.squareup.retrofit:converter-simplexml:1.9.0') {
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
+
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.0'
 
     /* Libraries */
     compile 'com.hannesdorfmann.mosby:mvp:2.0.0'
