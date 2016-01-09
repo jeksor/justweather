@@ -2,23 +2,27 @@ package com.esorokin.justweather.ui.base;
 
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.esorokin.justweather.R;
+import com.esorokin.justweather.presenters.base.BasePresenter;
 import com.f2prateek.dart.Dart;
+import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Date: 08.01.2016
- * Time: 19:22
+ * Date: 30-Dec-15
+ * Time: 11:56
  *
  * @author esorokin
  */
 @SuppressWarnings("unused")
-public abstract class BaseActivity extends AppCompatActivity
+public abstract class BaseLceActivity<CV extends View, D, V extends BaseLceMvpView<D>, P extends BasePresenter<V>>
+		extends MvpLceViewStateActivity<CV, D, V, P>
+		implements BaseLceMvpView<D>
 {
 	@Nullable
 	@Bind(R.id.appbar)

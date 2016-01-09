@@ -12,6 +12,7 @@ import java.util.List;
  *
  * @author esorokin
  */
+@SuppressWarnings("unused")
 @Root(name = "MMWEATHER", strict = false)
 public class ForecastResponse
 {

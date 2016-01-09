@@ -1,5 +1,7 @@
 package com.esorokin.justweather.network;
 
+import android.support.annotation.NonNull;
+
 import com.esorokin.justweather.models.Forecast;
 
 import java.util.List;
@@ -16,7 +18,7 @@ import rx.Subscriber;
  */
 public class ObservableCreator
 {
-	public static Observable.OnSubscribe<List<Forecast>> getNskForecasts()
+	public static Observable.OnSubscribe<List<Forecast>> getForecastsFor(@NonNull final String locationId)
 	{
 		return new Observable.OnSubscribe<List<Forecast>>()
 		{
@@ -36,7 +38,7 @@ public class ObservableCreator
 
 				try
 				{
-					subscriber.onNext(ApiFactory.createService(GismeteoApi.class).getForecasts(GismeteoApi.NODOSIBIRSK_ID).getForecasts());
+					subscriber.onNext(ApiFactory.createService(GismeteoApi.class).getForecasts(locationId).getForecasts());
 				}
 				catch (Throwable e)
 				{

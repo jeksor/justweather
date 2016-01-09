@@ -2,4 +2,7 @@
 	<string name="app_name">Just Weather</string>
 
 	<string name="action_settings">Settings</string>
+
+	<string name="nsk">Novosibirsk</string>
+	<string name="celsius">C</string>
 </resources>

@@ -10,6 +10,7 @@ import java.io.Serializable;
  *
  * @author esorokin
  */
+@SuppressWarnings("unused")
 public class Phenomena implements Serializable
 {
 	private static final long serialVersionUID = 5664758072228142687L;
@@ -26,17 +27,9 @@ public class Phenomena implements Serializable
 	@Attribute(name = "spower")
 	private int mSpower;
 
-	public Phenomena()
-	{}
-
 	public int getCloudiness()
 	{
 		return mCloudiness;
-	}
-
-	public void setCloudiness(int cloudiness)
-	{
-		mCloudiness = cloudiness;
 	}
 
 	public int getPrecipitation()
@@ -44,28 +37,13 @@ public class Phenomena implements Serializable
 		return mPrecipitation;
 	}
 
-	public void setPrecipitation(int precipitation)
-	{
-		mPrecipitation = precipitation;
-	}
-
 	public int getRpower()
 	{
 		return mRpower;
 	}
 
-	public void setRpower(int rpower)
-	{
-		mRpower = rpower;
-	}
-
 	public int getSpower()
 	{
 		return mSpower;
-	}
-
-	public void setSpower(int spower)
-	{
-		mSpower = spower;
 	}
 }

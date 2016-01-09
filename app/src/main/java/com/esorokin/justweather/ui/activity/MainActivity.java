@@ -1,6 +1,5 @@
 package com.esorokin.justweather.ui.activity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -14,7 +13,7 @@ import com.esorokin.justweather.models.Forecast;
 import com.esorokin.justweather.presenters.MainPresenter;
 import com.esorokin.justweather.ui.MainMvpView;
 import com.esorokin.justweather.ui.adapters.ForecastAdapter;
-import com.esorokin.justweather.ui.base.BaseActivity;
+import com.esorokin.justweather.ui.base.BaseLceActivity;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.SerializeableLceViewState;
 
@@ -28,7 +27,8 @@ import butterknife.Bind;
  *
  * @author esorokin
  */
-public class MainActivity extends BaseActivity<SwipeRefreshLayout, ArrayList<Forecast>, MainMvpView, MainPresenter> implements MainMvpView, SwipeRefreshLayout.OnRefreshListener
+public class MainActivity extends BaseLceActivity<SwipeRefreshLayout, ArrayList<Forecast>, MainMvpView, MainPresenter>
+		implements MainMvpView, SwipeRefreshLayout.OnRefreshListener
 {
 	private static final String TAG = "MainActivity";
 
@@ -48,6 +48,8 @@ public class MainActivity extends BaseActivity<SwipeRefreshLayout, ArrayList<For
 		mAdapter = new ForecastAdapter(getApplicationContext());
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 		mRecyclerView.setAdapter(mAdapter);
+
+		setTitle(R.string.nsk);
 	}
 
 	@NonNull
@@ -126,46 +128,12 @@ public class MainActivity extends BaseActivity<SwipeRefreshLayout, ArrayList<For
 	@Override
 	public LceViewState<ArrayList<Forecast>, MainMvpView> createViewState()
 	{
-		return new ViewState();
+		return new SerializeableLceViewState<>();
 	}
 
 	@Override
 	public ArrayList<Forecast> getData()
 	{
 		return mAdapter != null ? (ArrayList<Forecast>) mAdapter.getCollection() : null;
-	}
-
-	@SuppressLint("ParcelCreator")
-	private static class ViewState extends SerializeableLceViewState<ArrayList<Forecast>, MainMvpView>
-	{
-		private static final String TAG = "ViewState";
-
-		@Override
-		public void setStateShowContent(ArrayList<Forecast> loadedData)
-		{
-			Log.d(TAG, "setStateShowContent");
-			super.setStateShowContent(loadedData);
-		}
-
-		@Override
-		public void setStateShowError(Throwable e, boolean pullToRefresh)
-		{
-			Log.d(TAG, "setStateShowError");
-			super.setStateShowError(e, pullToRefresh);
-		}
-
-		@Override
-		public void setStateShowLoading(boolean pullToRefresh)
-		{
-			Log.d(TAG, "setStateShowLoading");
-			super.setStateShowLoading(pullToRefresh);
-		}
-
-		@Override
-		public void apply(MainMvpView view, boolean retained)
-		{
-			Log.d(TAG, "apply");
-			super.apply(view, retained);
-		}
 	}
 }

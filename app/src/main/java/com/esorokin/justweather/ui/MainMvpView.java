@@ -1,7 +1,7 @@
 package com.esorokin.justweather.ui;
 
 import com.esorokin.justweather.models.Forecast;
-import com.esorokin.justweather.ui.base.BaseMvpView;
+import com.esorokin.justweather.ui.base.BaseLceMvpView;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author esorokin
  */
-public interface MainMvpView extends BaseMvpView<ArrayList<Forecast>>
+public interface MainMvpView extends BaseLceMvpView<ArrayList<Forecast>>
 {
-
+	//add common logic
 }

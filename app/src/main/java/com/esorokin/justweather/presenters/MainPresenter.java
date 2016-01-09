@@ -1,8 +1,7 @@
 package com.esorokin.justweather.presenters;
 
-import android.util.Log;
-
 import com.esorokin.justweather.models.Forecast;
+import com.esorokin.justweather.network.GismeteoApi;
 import com.esorokin.justweather.network.ObservableCreator;
 import com.esorokin.justweather.presenters.base.BasePresenter;
 import com.esorokin.justweather.ui.MainMvpView;
@@ -47,11 +46,12 @@ public class MainPresenter extends BasePresenter<MainMvpView>
 
 	public void loadForecasts(final boolean pullOnRefresh)
 	{
-		Log.d("MainActivity", "loadForecasts");
 		getView().showLoading(pullOnRefresh);
 
+		String forecastLocation = GismeteoApi.NODOSIBIRSK_ID;
+
 		/*@formatter:off*/
-		Observable.create(ObservableCreator.getNskForecasts())
+		Observable.create(ObservableCreator.getForecastsFor(forecastLocation))
 				.subscribeOn(Schedulers.io())
 				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(new Observer<List<Forecast>>()

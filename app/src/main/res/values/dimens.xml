@@ -5,4 +5,5 @@
 	<dimen name="modest_screen_margin">16dp</dimen>
 	<dimen name="rich_screen_margin">32dp</dimen>
 
+	<dimen name="item_forecast_icon_size">25dp</dimen>
 </resources>

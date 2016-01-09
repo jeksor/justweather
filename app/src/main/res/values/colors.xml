@@ -3,4 +3,19 @@
 	<color name="colorPrimary">#3F51B5</color>
 	<color name="colorPrimaryDark">#303F9F</color>
 	<color name="colorAccent">#FF4081</color>
+
+	<color name="blackPrimary">@color/black87</color>
+	<color name="blackSecondary">@color/black54</color>
+
+	<!--Black-->
+	<color name="black87">#df000000</color>
+	<color name="black70">#B3000000</color>
+	<color name="black54">#8a000000</color>
+	<color name="black50">#88000000</color>
+	<color name="black25">#44000000</color>
+	<color name="black12">#1f000000</color>
+	<color name="black10">#1b000000</color>
+
+	<color name="white">#F7F7F7</color>
+	<color name="window_background">#FFF5F5F5</color>
 </resources>

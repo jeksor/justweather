@@ -5,6 +5,8 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Date: 30-Dec-15
@@ -12,21 +14,11 @@ import java.io.Serializable;
  *
  * @author esorokin
  */
+@SuppressWarnings("unused")
 @Root(name = "FORECAST", strict = false)
 public class Forecast implements Serializable
 {
 	private static final long serialVersionUID = 2400544621074989541L;
-
-	/*
-	*   <FORECAST day="02" month="01" year="2016" hour="15" tod="2" predict="0" weekday="7">
-		<PHENOMENA cloudiness="3" precipitation="10" rpower="0" spower="0"/>
-		<PRESSURE max="762" min="760"/>
-		<TEMPERATURE max="-26" min="-24"/>
-		<WIND min="3" max="5" direction="0"/>
-		<RELWET max="75" min="73"/>
-		<HEAT min="-32" max="-30"/>
-		</FORECAST>
-*/
 
 	@Attribute(name = "day")
 	private int mDay;
@@ -52,6 +44,21 @@ public class Forecast implements Serializable
 	@Element(name = "PHENOMENA")
 	private Phenomena mPhenomena;
 
+	@Element(name = "PRESSURE")
+	private MinMaxParameter mPressure;
+
+	@Element(name = "TEMPERATURE")
+	private MinMaxParameter mTemperature;
+
+	@Element(name = "WIND")
+	private Wind mWind;
+
+	@Element(name = "RELWET")
+	private MinMaxParameter mRelwet;
+
+	@Element(name = "HEAT")
+	private MinMaxParameter mHeat;
+
 	public Forecast()
 	{}
 
@@ -60,19 +67,9 @@ public class Forecast implements Serializable
 		return mDay;
 	}
 
-	public void setDay(int day)
-	{
-		mDay = day;
-	}
-
 	public int getMonth()
 	{
 		return mMonth;
-	}
-
-	public void setMonth(int month)
-	{
-		mMonth = month;
 	}
 
 	public int getYear()
@@ -80,19 +77,9 @@ public class Forecast implements Serializable
 		return mYear;
 	}
 
-	public void setYear(int year)
-	{
-		mYear = year;
-	}
-
 	public int getHour()
 	{
 		return mHour;
-	}
-
-	public void setHour(int hour)
-	{
-		mHour = hour;
 	}
 
 	public int getTod()
@@ -100,19 +87,9 @@ public class Forecast implements Serializable
 		return mTod;
 	}
 
-	public void setTod(int tod)
-	{
-		mTod = tod;
-	}
-
 	public int getPredict()
 	{
 		return mPredict;
-	}
-
-	public void setPredict(int predict)
-	{
-		mPredict = predict;
 	}
 
 	public int getWeekday()
@@ -120,18 +97,44 @@ public class Forecast implements Serializable
 		return mWeekday;
 	}
 
-	public void setWeekday(int weekday)
-	{
-		mWeekday = weekday;
-	}
-
 	public Phenomena getPhenomena()
 	{
 		return mPhenomena;
 	}
 
-	public void setPhenomena(Phenomena phenomena)
+	public MinMaxParameter getPressure()
 	{
-		mPhenomena = phenomena;
+		return mPressure;
+	}
+
+	public MinMaxParameter getTemperature()
+	{
+		return mTemperature;
+	}
+
+	public Wind getWind()
+	{
+		return mWind;
+	}
+
+	public MinMaxParameter getRelwet()
+	{
+		return mRelwet;
+	}
+
+	public MinMaxParameter getHeat()
+	{
+		return mHeat;
+	}
+
+	public Date getDate()
+	{
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR, mYear);
+		calendar.set(Calendar.MONTH, mMonth);
+		calendar.set(Calendar.DAY_OF_MONTH, mDay);
+		calendar.set(Calendar.HOUR_OF_DAY, mHour);
+
+		return calendar.getTime();
 	}
 }

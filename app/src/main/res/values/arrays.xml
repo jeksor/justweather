@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="weather_pictures">
+		<item>@drawable/ic_weather_big_snow</item>
+		<item>@drawable/ic_weather_clear</item>
+		<item>@drawable/ic_weather_clear_night</item>
+		<item>@drawable/ic_weather_clouds</item>
+		<item>@drawable/ic_weather_clouds_night</item>
+		<item>@drawable/ic_weather_drizzle_day</item>
+		<item>@drawable/ic_weather_drizzle_night</item>
+		<item>@drawable/ic_weather_few_clouds</item>
+		<item>@drawable/ic_weather_few_clouds_night</item>
+		<item>@drawable/ic_weather_fog</item>
+		<item>@drawable/ic_weather_hail</item>
+		<item>@drawable/ic_weather_haze</item>
+		<item>@drawable/ic_weather_mist</item>
+		<item>@drawable/ic_weather_rain_day</item>
+		<item>@drawable/ic_weather_rain_night</item>
+		<item>@drawable/ic_weather_showers_day</item>
+		<item>@drawable/ic_weather_showers_night</item>
+		<item>@drawable/ic_weather_showers_scattered_day</item>
+		<item>@drawable/ic_weather_showers_scattered_night</item>
+		<item>@drawable/ic_weather_snow</item>
+		<item>@drawable/ic_weather_snow_rain</item>
+		<item>@drawable/ic_weather_snow_scattered_day</item>
+		<item>@drawable/ic_weather_snow_scattered_night</item>
+		<item>@drawable/ic_weather_storm</item>
+		<item>@drawable/ic_weather_storm_day</item>
+		<item>@drawable/ic_weather_storm_night</item>
+		<item>@drawable/ic_weather_wind</item>
+	</string-array>
+
+</resources>
