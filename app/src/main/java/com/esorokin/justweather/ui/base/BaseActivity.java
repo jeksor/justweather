@@ -64,4 +64,16 @@ public abstract class BaseActivity extends AppCompatActivity
 			mToolbar.setTitle(getString(title));
 		}
 	}
+
+	@Nullable
+	public AppBarLayout getAppBarLayout()
+	{
+		return mAppBarLayout;
+	}
+
+	@Nullable
+	public Toolbar getToolbar()
+	{
+		return mToolbar;
+	}
 }

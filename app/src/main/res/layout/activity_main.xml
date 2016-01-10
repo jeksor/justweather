@@ -1,19 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
 	>
 
-	<include layout="@layout/include_appbar"/>
-
-	<FrameLayout
-
+	<android.support.design.widget.AppBarLayout
+		android:id="@+id/appbar"
+		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:theme="@style/AppTheme.AppBarOverlay"
 		>
 
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			android:background="@color/colorPrimary"
+			app:popupTheme="@style/AppTheme.PopupOverlay"
+			/>
+	</android.support.design.widget.AppBarLayout>
+
+	<!-- Content View -->
+	<android.support.v4.widget.SwipeRefreshLayout
+		android:id="@+id/contentView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+
+		android:layout_below="@id/appbar"
+		>
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/recyclerView"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			/>
+
+	</android.support.v4.widget.SwipeRefreshLayout>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@id/appbar"
+		>
 		<!-- Loading View -->
 		<ProgressBar
 			android:id="@+id/loadingView"
@@ -23,29 +54,15 @@
 			android:indeterminate="true"
 			/>
 
-		<!-- Content View -->
-		<android.support.v4.widget.SwipeRefreshLayout
-			android:id="@+id/contentView"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			>
-
-			<android.support.v7.widget.RecyclerView
-				android:id="@+id/recyclerView"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				/>
-
-		</android.support.v4.widget.SwipeRefreshLayout>
-
-
 		<!-- Error view -->
 		<TextView
 			android:id="@+id/errorView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+		    android:gravity="center"
+		    android:padding="@dimen/modest_screen_margin"
+		    android:drawableTop="@drawable/ic_cloud_off_black_24dp"
 			/>
-
 	</FrameLayout>
-</LinearLayout>
+</RelativeLayout>
 

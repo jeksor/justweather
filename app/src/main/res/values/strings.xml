@@ -4,5 +4,11 @@
 	<string name="action_settings">Settings</string>
 
 	<string name="nsk">Novosibirsk</string>
-	<string name="celsius">C</string>
+	<string name="celsius">&#8451;</string>
+	<string name="cloudness">Cloudness</string>
+	<string name="precipitation">Precipitation</string>
+	<string name="pressure">Pressure</string>
+	<string name="wind">Wind</string>
+	<string name="relwet">Relwet</string>
+	<string name="heat">Heat</string>
 </resources>

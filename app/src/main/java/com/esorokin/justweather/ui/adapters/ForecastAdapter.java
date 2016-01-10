@@ -63,7 +63,7 @@ public class ForecastAdapter extends CollectionRecycleAdapter<Forecast>
 				dateTextView.setText(sDateFormat.format(model.getDate()));
 				timeTextView.setText(String.format("%s : 00", model.getHour()));
 				weatherImageView.setImageResource(WeatherPictureProvider.pictureBy(getContext(), model));
-				tempTextView.setText(String.valueOf(model.getTemperature().getAverageValue()));
+				tempTextView.setText(String.format("%d %s", model.getTemperature().getAverageValue(), getString(R.string.celsius)));
 
 				precipitationTextView.setText(String.valueOf(model.getPhenomena().getPrecipitation()));
 				humidityTextView.setText(String.valueOf(model.getRelwet().getAverageValue()));

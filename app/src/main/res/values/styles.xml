@@ -34,4 +34,13 @@
 		<item name="android:gravity">center_horizontal</item>
 		<item name="android:textColor">@color/white</item>
 	</style>
+
+	<style name="AppTheme.TextView.DetailsForecast" parent="TextAppearance.AppCompat.Subhead">
+		<item name="android:layout_marginTop">@dimen/modest_screen_margin</item>
+		<item name="android:padding">@dimen/modest_screen_margin</item>
+
+		<item name="android:background">@drawable/rounded_background</item>
+
+		<item name="android:textColor">@color/white</item>
+	</style>
 </resources>

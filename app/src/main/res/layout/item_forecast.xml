@@ -91,21 +91,7 @@
 					android:layout_centerVertical="true"
 
 					android:textColor="@color/blackPrimary"
-					tools:text="27"
-					/>
-
-				<TextView
-					style="@style/Base.TextAppearance.AppCompat.Headline"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-
-					android:layout_marginLeft="@dimen/minor_screen_margin"
-					android:layout_toRightOf="@id/item_forecast__temperature_text_view"
-					android:layout_alignTop="@id/item_forecast__current_weather_image_view"
-					android:layout_alignBottom="@id/item_forecast__current_weather_image_view"
-
-					android:textColor="@color/blackPrimary"
-					android:text="@string/celsius"
+					tools:text="27 &#8451;"
 					/>
 			</RelativeLayout>
 		</LinearLayout>
@@ -119,7 +105,7 @@
 			android:padding="@dimen/minor_screen_margin"
 
 			android:orientation="vertical"
-			android:background="@color/colorAccent"
+			android:background="@color/colorPrimaryDark"
 			>
 
 			<LinearLayout
