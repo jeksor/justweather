@@ -1,4 +1,4 @@
-package com.esorokin.justweather.ui.common;
+package com.esorokin.justweather.utils;
 
 import android.graphics.Bitmap;
 

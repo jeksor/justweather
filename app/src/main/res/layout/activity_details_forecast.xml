@@ -6,7 +6,9 @@
 	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	tools:ignore="ContentDescription"
 	>
+
 	<ImageView
 		android:id="@+id/activity_details_forecast__background"
 		android:layout_width="match_parent"
@@ -20,7 +22,7 @@
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:theme="@style/AppTheme.AppBarOverlay"
-	    android:background="@android:color/transparent"
+		android:background="@android:color/transparent"
 		>
 
 		<android.support.v7.widget.Toolbar
@@ -32,61 +34,60 @@
 			/>
 	</android.support.design.widget.AppBarLayout>
 
-	<TextView
-		style="@style/TextAppearance.AppCompat.Subhead"
-		android:id="@+id/activity_details_forecast__date_text_view"
+	<android.support.v4.widget.NestedScrollView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 
-		android:layout_below="@id/appbar"
-
-		android:padding="@dimen/modest_screen_margin"
-		android:gravity="center_horizontal"
-
-		android:textColor="@color/white"
-		android:text="Csefsfesdf"
-		/>
-
-	<LinearLayout
-		android:id="@+id/activity_details_forecast__head_container"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-
-		android:layout_below="@id/activity_details_forecast__date_text_view"
+	    android:layout_below="@id/appbar"
 		>
-
-		<TextView
-			style="@style/TextAppearance.AppCompat.Display2"
-			android:id="@+id/activity_details_forecast__temp_text_view"
-			android:layout_width="0dp"
+		<LinearLayout
+			android:id="@+id/activity_details_forecast__details_linear_layout"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
+		    android:orientation="vertical"
+			>
+			<TextView
+				style="@style/TextAppearance.AppCompat.Subhead"
+				android:id="@+id/activity_details_forecast__date_text_view"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
 
-			android:padding="@dimen/modest_screen_margin"
-			android:gravity="center"
+				android:padding="@dimen/modest_screen_margin"
+				android:gravity="center_horizontal"
 
-			android:textColor="@color/white"
-			android:text="-60 &#8451;"
-			/>
+				android:textColor="@color/white"
+				/>
 
-		<ImageView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				>
 
-			android:layout_gravity="center"
+				<TextView
+					style="@style/TextAppearance.AppCompat.Display2"
+					android:id="@+id/activity_details_forecast__temp_text_view"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
 
-			android:src="@drawable/ic_weather_wind"
-			/>
-	</LinearLayout>
+					android:padding="@dimen/modest_screen_margin"
+					android:gravity="center"
 
-	<android.support.v7.widget.RecyclerView
-		android:id="@+id/activity_details_forecast__details_recycler_view"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+					android:textColor="@color/white"
+					/>
 
-		android:layout_below="@id/activity_details_forecast__head_container"
-		/>
+				<ImageView
+					android:id="@+id/activity_details_forecast__weather_picture"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
 
+					android:layout_gravity="center"
+
+					android:src="@drawable/ic_weather_wind"
+					/>
+			</LinearLayout>
+		</LinearLayout>
+	</android.support.v4.widget.NestedScrollView>
 </RelativeLayout>

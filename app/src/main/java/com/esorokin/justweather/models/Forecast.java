@@ -1,5 +1,7 @@
 package com.esorokin.justweather.models;
 
+import android.support.annotation.IdRes;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -7,6 +9,7 @@ import org.simpleframework.xml.Root;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Date: 30-Dec-15
@@ -59,8 +62,22 @@ public class Forecast implements Serializable
 	@Element(name = "HEAT")
 	private MinMaxParameter mHeat;
 
+	/**
+	 * Need only in debug. Remove and replace to logic based on weather data.
+	 */
+	@IdRes
+	private final int mDebugIconIndex;
+
 	public Forecast()
-	{}
+	{
+		//27 is debug count of images.
+		mDebugIconIndex = new Random().nextInt(27);
+	}
+
+	public int getDebugIconIndex()
+	{
+		return mDebugIconIndex;
+	}
 
 	public int getDay()
 	{

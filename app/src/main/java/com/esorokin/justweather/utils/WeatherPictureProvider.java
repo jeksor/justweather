@@ -1,4 +1,4 @@
-package com.esorokin.justweather.ui.common;
+package com.esorokin.justweather.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -30,7 +30,17 @@ public class WeatherPictureProvider
 	{
 		//TODO Replace to real logic.
 		TypedArray imgs = context.getResources().obtainTypedArray(R.array.weather_pictures);
-		int resourceId = imgs.getResourceId(new Random().nextInt(imgs.length()), -1);
+
+		int resourceId;
+		int index = forecast.getDebugIconIndex();
+		if (index < 0 || index >= imgs.length())
+		{
+			resourceId = imgs.getResourceId(new Random().nextInt(imgs.length()), -1);
+		}
+		else
+		{
+			resourceId = imgs.getResourceId(index, -1);
+		}
 
 		imgs.recycle();
 		return resourceId;
