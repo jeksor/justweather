@@ -8,7 +8,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 /**
- * Date: 11-Jan-16
+ * Date: 10-Jan-16
  * Time: 16:33
  *
  * @author esorokin

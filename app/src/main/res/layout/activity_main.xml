@@ -58,10 +58,15 @@
 		<TextView
 			android:id="@+id/errorView"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-		    android:gravity="center"
-		    android:padding="@dimen/modest_screen_margin"
-		    android:drawableTop="@drawable/ic_cloud_off_black_24dp"
+			android:layout_height="wrap_content"
+
+		    android:layout_gravity="center"
+			android:gravity="center"
+			android:padding="@dimen/rich_screen_margin"
+
+			android:drawablePadding="@dimen/modest_screen_margin"
+			android:drawableTop="@drawable/ic_cloud_off_black_24dp"
+		    android:text="Touch to retry"
 			/>
 	</FrameLayout>
 </RelativeLayout>

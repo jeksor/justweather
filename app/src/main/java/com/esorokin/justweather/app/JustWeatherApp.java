@@ -6,7 +6,7 @@ import com.esorokin.justweather.di.components.DaggerJustWeatherComponent;
 import com.esorokin.justweather.di.components.JustWeatherComponent;
 
 /**
- * Date: 11-Jan-16
+ * Date: 10-Jan-16
  * Time: 14:19
  *
  * @author esorokin

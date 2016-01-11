@@ -11,7 +11,7 @@ import dagger.Provides;
 import retrofit.RestAdapter;
 
 /**
- * Date: 11-Jan-16
+ * Date: 10-Jan-16
  * Time: 16:36
  *
  * @author esorokin

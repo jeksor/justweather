@@ -16,7 +16,7 @@ import retrofit.converter.Converter;
 import retrofit.converter.SimpleXMLConverter;
 
 /**
- * Date: 11-Jan-16
+ * Date: 10-Jan-16
  * Time: 15:40
  *
  * @author esorokin

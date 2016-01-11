@@ -59,6 +59,12 @@ public class MainActivity extends BaseLceActivity<SwipeRefreshLayout, ArrayList<
 	}
 
 	@Override
+	public void onNewViewStateInstance()
+	{
+		showError(new Exception("Forecast data is empty."), false);
+	}
+
+	@Override
 	protected String getErrorMessage(Throwable e, boolean pullToRefresh)
 	{
 		return e.getMessage();
