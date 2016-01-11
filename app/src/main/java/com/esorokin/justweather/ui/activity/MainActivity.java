@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.esorokin.justweather.R;
 import com.esorokin.justweather.models.Forecast;
@@ -56,15 +55,7 @@ public class MainActivity extends BaseLceActivity<SwipeRefreshLayout, ArrayList<
 	@Override
 	public MainPresenter createPresenter()
 	{
-		Log.d(TAG, "createPresenter");
-		return MainPresenter.getInstance();
-	}
-
-	@Override
-	protected void onDestroy()
-	{
-		Log.d(TAG, "onDestroy");
-		super.onDestroy();
+		return new MainPresenter();
 	}
 
 	@Override
@@ -82,7 +73,6 @@ public class MainActivity extends BaseLceActivity<SwipeRefreshLayout, ArrayList<
 	@Override
 	public void loadData(boolean pullToRefresh)
 	{
-		Log.d(TAG, "loadData");
 		getPresenter().loadForecasts(pullToRefresh);
 	}
 
@@ -113,6 +103,7 @@ public class MainActivity extends BaseLceActivity<SwipeRefreshLayout, ArrayList<
 
 		if (pullToRefresh)
 		{
+			//fix famous bug that happend this pullToRefresh widget.
 			new Handler().post(new Runnable()
 			{
 				@Override

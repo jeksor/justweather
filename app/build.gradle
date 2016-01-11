@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 repositories {
     maven {url "https://clojars.org/repo/"}
@@ -52,6 +53,10 @@ dependencies {
     /* Libraries */
     compile 'com.hannesdorfmann.mosby:mvp:2.0.0'
     compile 'com.hannesdorfmann.mosby:viewstate:2.0.0'
+
+    compile 'com.google.dagger:dagger:2.0'
+    provided 'com.google.dagger:dagger-compiler:2.0'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
 
     /* Utils */
     compile 'com.github.bumptech.glide:glide:3.6.1'

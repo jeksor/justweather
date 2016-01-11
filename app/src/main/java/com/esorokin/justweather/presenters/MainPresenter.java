@@ -1,16 +1,21 @@
 package com.esorokin.justweather.presenters;
 
+import android.support.annotation.NonNull;
+
+import com.esorokin.justweather.app.JustWeatherApp;
 import com.esorokin.justweather.models.Forecast;
 import com.esorokin.justweather.network.GismeteoApi;
-import com.esorokin.justweather.network.ObservableCreator;
 import com.esorokin.justweather.presenters.base.BasePresenter;
 import com.esorokin.justweather.ui.MainMvpView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 import rx.Observer;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -23,25 +28,11 @@ import rx.schedulers.Schedulers;
 @SuppressWarnings("ConstantConditions")
 public class MainPresenter extends BasePresenter<MainMvpView>
 {
-	private static MainPresenter sInstance;
+	@Inject GismeteoApi mGismeteoApi;
 
 	public MainPresenter()
-	{/*singleton*/}
-
-	public static MainPresenter getInstance()
 	{
-		if (sInstance == null)
-		{
-			synchronized (MainPresenter.class)
-			{
-				if (sInstance == null)
-				{
-					sInstance = new MainPresenter();
-				}
-			}
-		}
-
-		return sInstance;
+		JustWeatherApp.getJustWeatherComponent().inject(this);
 	}
 
 	public void loadForecasts(final boolean pullOnRefresh)
@@ -51,7 +42,7 @@ public class MainPresenter extends BasePresenter<MainMvpView>
 		String forecastLocation = GismeteoApi.NODOSIBIRSK_ID;
 
 		/*@formatter:off*/
-		Observable.create(ObservableCreator.getForecastsFor(forecastLocation))
+		Observable.create(getForecastsFor(forecastLocation))
 				.subscribeOn(Schedulers.io())
 				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(new Observer<List<Forecast>>()
@@ -82,5 +73,27 @@ public class MainPresenter extends BasePresenter<MainMvpView>
                     }
                 }
 		/*@formatter:on*/);
+	}
+
+	private Observable.OnSubscribe<List<Forecast>> getForecastsFor(@NonNull final String locationId)
+	{
+		return new Observable.OnSubscribe<List<Forecast>>()
+		{
+			@Override
+			public void call(Subscriber<? super List<Forecast>> subscriber)
+			{
+				try
+				{
+					subscriber.onNext(mGismeteoApi.getForecasts(locationId).getForecasts());
+				}
+				catch (Throwable e)
+				{
+					subscriber.onError(e.getCause());
+					return;
+				}
+
+				subscriber.onCompleted();
+			}
+		};
 	}
 }
