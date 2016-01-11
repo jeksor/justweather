@@ -1,5 +1,8 @@
 package com.esorokin.justweather.di.modules;
 
+import android.app.Application;
+
+import com.esorokin.justweather.R;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.concurrent.TimeUnit;
@@ -21,7 +24,7 @@ import retrofit.converter.SimpleXMLConverter;
  *
  * @author esorokin
  */
-@Module
+@Module(includes = AppModule.class)
 public class NetworkModule
 {
 	public static final String BASE_URL = "http://informer.gismeteo.ru/";
@@ -51,14 +54,21 @@ public class NetworkModule
 
 	@Provides
 	@Singleton
-	ErrorHandler provideErrorHandler()
+	ErrorHandler provideErrorHandler(final Application application)
 	{
 		return new ErrorHandler()
 		{
 			@Override
 			public Throwable handleError(RetrofitError cause)
 			{
-				return new Exception(cause);
+				if (cause.getKind().equals(RetrofitError.Kind.NETWORK))
+				{
+					return new Exception(application.getString(R.string.connection_trouble), cause);
+				}
+				else
+				{
+					return new Exception(cause);
+				}
 			}
 		};
 	}
@@ -67,12 +77,7 @@ public class NetworkModule
 	@Singleton
 	RestAdapter provideRetrofit(OkHttpClient okHttpClient, Converter converter, ErrorHandler errorHandler)
 	{
-		return new RestAdapter.Builder()
-				.setEndpoint(BASE_URL)
-				.setClient(new OkClient(okHttpClient))
-				.setConverter(converter)
-				.setErrorHandler(errorHandler)
-				.setLogLevel(RestAdapter.LogLevel.FULL)
-				.build();
+		return new RestAdapter.Builder().setEndpoint(BASE_URL).setClient(new OkClient(okHttpClient)).setConverter(converter).setErrorHandler(errorHandler)
+				.setLogLevel(RestAdapter.LogLevel.FULL).build();
 	}
 }
