@@ -12,7 +12,7 @@ import com.esorokin.justweather.models.Forecast;
 import com.esorokin.justweather.presenters.MainPresenter;
 import com.esorokin.justweather.ui.MainMvpView;
 import com.esorokin.justweather.ui.adapters.ForecastAdapter;
-import com.esorokin.justweather.ui.base.BaseLceActivity;
+import com.esorokin.justweather.ui.base.delegates.BaseMvpLceViewStateActivity;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.SerializeableLceViewState;
 
@@ -26,7 +26,7 @@ import butterknife.Bind;
  *
  * @author esorokin
  */
-public class MainActivity extends BaseLceActivity<SwipeRefreshLayout, ArrayList<Forecast>, MainMvpView, MainPresenter>
+public class MainActivity extends BaseMvpLceViewStateActivity<SwipeRefreshLayout, ArrayList<Forecast>, MainMvpView, MainPresenter>
 		implements MainMvpView, SwipeRefreshLayout.OnRefreshListener
 {
 	private static final String TAG = "MainActivity";

@@ -8,7 +8,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
  *
  * @author esorokin
  */
-public interface BaseLceMvpView<D> extends MvpLceView<D>
+public interface BaseMvpLceView<M> extends MvpLceView<M>
 {
 	//add common logic
 }
