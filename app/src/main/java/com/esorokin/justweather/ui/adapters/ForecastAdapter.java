@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.esorokin.justweather.R;
 import com.esorokin.justweather.models.Forecast;
 import com.esorokin.justweather.ui.activity.DetailsForecastActivity;
-import com.esorokin.justweather.ui.common.WeatherPictureProvider;
+import com.esorokin.justweather.utils.WeatherPictureProvider;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

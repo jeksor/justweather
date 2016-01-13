@@ -7,23 +7,21 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.esorokin.justweather.R;
 import com.esorokin.justweather.models.Forecast;
-import com.esorokin.justweather.ui.adapters.DetailsForecastAdapter;
 import com.esorokin.justweather.ui.base.BaseActivity;
-import com.esorokin.justweather.ui.common.Effects;
+import com.esorokin.justweather.utils.Effects;
+import com.esorokin.justweather.utils.WeatherPictureProvider;
 import com.f2prateek.dart.InjectExtra;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import butterknife.Bind;
@@ -54,10 +52,11 @@ public class DetailsForecastActivity extends BaseActivity
 	@Bind(R.id.activity_details_forecast__temp_text_view)
 	TextView mTempTextView;
 
-	@Bind(R.id.activity_details_forecast__details_recycler_view)
-	RecyclerView mDetailsForecastRecyclerView;
+	@Bind(R.id.activity_details_forecast__weather_picture)
+	ImageView mWeatherImageView;
 
-	private DetailsForecastAdapter mDetailsForecastAdapter;
+	@Bind(R.id.activity_details_forecast__details_linear_layout)
+	LinearLayout mDetailsLinearLayout;
 
 	public static void start(Context context, @NonNull Forecast forecast)
 	{
@@ -79,21 +78,15 @@ public class DetailsForecastActivity extends BaseActivity
 		mBgImageView.setImageBitmap(Effects.doBlur(picture, 9, false));
 
 		mDateTextView.setText(sDateFormat.format(mCurrentForecast.getDate()));
-		mTempTextView.setText(String.valueOf(mCurrentForecast.getTemperature().getAverageValue()));
+		mTempTextView.setText(String.format("%s %s", mCurrentForecast.getTemperature().getAverageValue(), getString(R.string.celsius)));
+		mWeatherImageView.setImageResource(WeatherPictureProvider.pictureBy(this, mCurrentForecast));
 
-		mDetailsForecastAdapter = new DetailsForecastAdapter(getApplicationContext());
-		mDetailsForecastRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-		mDetailsForecastRecyclerView.setAdapter(mDetailsForecastAdapter);
-
-		List<DetailsForecastAdapter.ForecastDetailsItem> items = new ArrayList<>();
-		items.add(createItem(R.string.cloudness, String.valueOf(mCurrentForecast.getPhenomena().getCloudiness())));
-		items.add(createItem(R.string.precipitation, String.valueOf(mCurrentForecast.getPhenomena().getPrecipitation())));
-		items.add(createItem(R.string.pressure, String.valueOf(mCurrentForecast.getPressure().getAverageValue())));
-		items.add(createItem(R.string.wind, String.valueOf(mCurrentForecast.getWind().getAverageValue())));
-		items.add(createItem(R.string.relwet, String.valueOf(mCurrentForecast.getRelwet().getAverageValue())));
-		items.add(createItem(R.string.heat, String.valueOf(mCurrentForecast.getHeat().getAverageValue())));
-
-		mDetailsForecastAdapter.setCollection(items);
+		inflateItem(R.string.cloudness, String.valueOf(mCurrentForecast.getPhenomena().getCloudiness()));
+		inflateItem(R.string.precipitation, String.valueOf(mCurrentForecast.getPhenomena().getPrecipitation()));
+		inflateItem(R.string.pressure, String.valueOf(mCurrentForecast.getPressure().getAverageValue()));
+		inflateItem(R.string.wind, String.valueOf(mCurrentForecast.getWind().getAverageValue()));
+		inflateItem(R.string.relwet, String.valueOf(mCurrentForecast.getRelwet().getAverageValue()));
+		inflateItem(R.string.heat, String.valueOf(mCurrentForecast.getHeat().getAverageValue()));
 	}
 
 	@Override
@@ -121,8 +114,11 @@ public class DetailsForecastActivity extends BaseActivity
 		}
 	}
 
-	private DetailsForecastAdapter.ForecastDetailsItem createItem(@StringRes int titleRes, String value)
+	private void inflateItem(@StringRes int titleRes, String value)
 	{
-		return new DetailsForecastAdapter.ForecastDetailsItem(String.format("%s: %s", getString(titleRes), value));
+		View inflateItem = getLayoutInflater().inflate(R.layout.item_details, mDetailsLinearLayout, false);
+		((TextView) inflateItem.findViewById(R.id.item_details__info_text_view)).setText(String.format("%s: %s", getString(titleRes), value));
+
+		mDetailsLinearLayout.addView(inflateItem);
 	}
 }

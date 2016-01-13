@@ -4,6 +4,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:orientation="vertical"
 	>
 
@@ -65,8 +66,8 @@
 			android:padding="@dimen/rich_screen_margin"
 
 			android:drawablePadding="@dimen/modest_screen_margin"
-			android:drawableTop="@drawable/ic_cloud_off_black_24dp"
-		    android:text="Touch to retry"
+			android:drawableTop="@drawable/ic_update"
+		    tools:text="Touch to retry"
 			/>
 	</FrameLayout>
 </RelativeLayout>
